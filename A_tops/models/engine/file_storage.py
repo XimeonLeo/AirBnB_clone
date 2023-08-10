@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ Defines the FileStorage class that serializes and deserializes """
-
 import json
 from models.base import BaseModel
+
 
 class FileStorage:
     """ serializes and deserializes an instance to a file and vice versa """
@@ -26,7 +26,7 @@ class FileStorage:
     def reload(self):
         try:
             with open(self.__file_path, mode="r") as fh:
-                load_ = json.load(fh)
+                load = json.load(fh)
                 for v in load.values():
                     self.new(eval(v["__class__"])(**v))
         except FileNotFoundError:

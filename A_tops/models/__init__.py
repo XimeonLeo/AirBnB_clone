@@ -1,9 +1,7 @@
 #!/usr/bin/python3
-""" Create a unique FileStorage instance for my application. """
+""" Link Basemodel to FileStorage by using storage """
 
+from models.engine.file_storage import FileStorage
 
-from models.engine import file_storage
-
-
-storage = file_storage.FileStorage()
+storage = FileStorage()
 storage.reload()
