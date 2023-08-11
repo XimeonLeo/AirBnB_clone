@@ -5,7 +5,7 @@ from models.base_model import BaseModel
 from models import storage
 
 
-allClasses = ["BaseModel"]
+allClasses = ["BaseModel", "User"]
 
 
 class HBNBCommand(cmd.Cmd):
@@ -80,6 +80,7 @@ class HBNBCommand(cmd.Cmd):
                 print(f"** no instance found **")
             else:
                 del(storage.all()[key])
+        storage.save() # Why do this have to be here!?
 
     def do_all(self, cmd):
         """ Prints all string representation of all instances
@@ -109,8 +110,23 @@ class HBNBCommand(cmd.Cmd):
         Ex: $ update BaseModel 1234-1234-1234 email
             "aibnb@mail.com".
         """
+        args = cmd.split()
 
-
+        if len(args) == 0:
+            print(f"** class name missing **")
+        elif args[0] not in allClasses:
+            print(f"** class doesn't exist **")
+        elif len(args) == 1:
+            print(f"** instance id missing **")
+        else:
+            key = f"{args[0]}.{args[1]}"
+            if key in storage.all():
+                if len(args) < 3:
+                    print(f"** attribute name missing **")
+                elif len(args) < 4:
+                    print(f"** value missing **")
+            else:
+                print(f"** no instance found **")
 
 
 if __name__ == '__main__':
