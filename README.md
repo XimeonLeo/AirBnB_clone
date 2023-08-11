@@ -5,7 +5,7 @@
 ## Description of the Project
 --------------------------
 
-This is the first step towards building our first full web application: the **AirBnB clone**. This first step is very important because we'll use what we build during this project with all other following projects which includes:
+This is the first step towards building our first full web application: the **AirBnB clone**. This first step is very important because we'll use what we build during this project with all other following projects which includes: *I'll remove this*:
 
 >> HTML/CSS Templating
 >> Database Storage
