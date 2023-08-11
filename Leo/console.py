@@ -101,6 +101,17 @@ class HBNBCommand(cmd.Cmd):
         # print([str(v) for k, v in storage.all().items()
         # if k.startswith(args[0])])
 
+    def do_update(self, cmd):
+        """ Updates an instance based on the class name and id
+        by adding or updating attribute
+        (save the change into the JSON file).
+
+        Ex: $ update BaseModel 1234-1234-1234 email
+            "aibnb@mail.com".
+        """
+
+
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
