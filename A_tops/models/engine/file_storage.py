@@ -7,12 +7,11 @@ from models.base import BaseModel
 class FileStorage:
     """ serializes and deserializes an instance to a file and vice versa """
 
-    def __init__(self):
-        self.__file_path = "file.json"
-        self.__objects = {}
+    __file_path = "file.json"
+    __objects = {}
 
     def all(self):
-        return (self.__objects)
+        return self.__objects
 
     def new(self, obj):
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
