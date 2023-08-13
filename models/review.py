@@ -7,4 +7,4 @@ class Review(BaseModel):
     """ Defines the class Review that inherits from BaseModel """
     place_id = ""
     user_id = ""
-    test = ""
+    text = ""
