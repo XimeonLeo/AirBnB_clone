@@ -94,7 +94,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, cmd):
         """ Prints all string representation of all instances
             based or not on the class name.
-            Ex: $ all BaseModel or $ all
+            Ex: $ all BaseModel or $ all<F5>
         """
         args = cmd.split()
 
@@ -136,10 +136,53 @@ class HBNBCommand(cmd.Cmd):
                     print(f"** value missing **")
                 else:
                     obj = storage.all()[key]
-                    setattr(obj, args[2], eval(args[3]))
+                    try:
+                        setattr(obj, args[2], eval(args[3]))
+                    except NameError:
+                        setattr(obj, args[2], args[3])
                     obj.save()
             else:
                 print(f"** no instance found **")
+
+    def default(self, cmd):
+        """ Handles Unknown Commands
+            Ex. <class name>.<method>().
+        """
+        args = cmd.split(".")
+
+        if args[0] in allClasses:
+            if args[1][0:-2] == "all":
+                self.do_all(args[0])
+            elif args[1][0:-2] == "count":
+                count = 0
+                for k in storage.all().keys():
+                    if k.startswith(args[0]):
+                        count += 1
+                print(count)
+            elif args[1].startswith("show"):
+                class_id = eval(args[1].strip("show()"))
+                self.do_show(f"{args[0]} {class_id}")
+            elif args[1].startswith("destroy"):
+                class_id = eval(args[1].strip("destroy()"))
+                self.do_destroy(f"{args[0]} {class_id}")
+            elif args[1].startswith("update"):
+                """check if it starts with update
+                    strip off the update
+                    eval it and it becomes a tuple
+                    index the dictionary part and itrratr
+                """
+                if args[1].endswith("})"):
+                    arg = eval(args[1].strip("update"))
+                    idd = arg[0]
+                    for k, v in arg[1].items():
+                        cmd = f"{args[0]} {idd} {k} {v}"
+                        self.do_update(cmd)
+                else:
+                    test = args[1].strip("update()").split(", ")
+                    idd = eval(test[0])
+                    attribute = eval(test[1])
+                    cmd = f"{args[0]} {idd} {attribute} {test[2]}"
+                    self.do_update(cmd)
 
 
 if __name__ == '__main__':
