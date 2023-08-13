@@ -29,6 +29,7 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, cmd):
         """An EOF signal that quits the program
         """
+        print()
         return True
 
     def emptyline(self):
@@ -52,8 +53,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, cmd):
         """Prints the string representation of an instance
-            based on the class name and id.
-            Ex: $ show BaseModel 1234-1234-1234.
+        based on the class name and id.
+        Ex: $ show BaseModel 1234-1234-1234.
         """
         args = cmd.split()
 
