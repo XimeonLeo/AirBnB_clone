@@ -10,8 +10,8 @@ from io import StringIO
 
 class TestConsole(unittest.TestCase):
     def test_show(self):
-        h = ("Prints the string representation of an instance\n      based"
-        "on the class name and id.\n    Ex: $ show BaseModel 1234-1234-1234.")
+        h = ("Prints the string representation of an instance\n      based on"
+             "the class name and id.\n  Ex: $ show BaseModel 1234-1234-1234.")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help show"))
             self.assertEqual(h, output.getvalue().strip())
@@ -22,7 +22,7 @@ class TestConsole(unittest.TestCase):
     def test_empty_line(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(""))
-            self.assertEqual("", output.getvalue().strip()) 
+            self.assertEqual("", output.getvalue().strip())
 
 
 if __name__ == "__main__":

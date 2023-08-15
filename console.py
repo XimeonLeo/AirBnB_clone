@@ -89,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
             if key not in storage.all():
                 print(f"** no instance found **")
             else:
-                del(storage.all()[key])
+                del (storage.all()[key])
             storage.save()  # Why do this have to be here!?
 
     def do_all(self, cmd):
